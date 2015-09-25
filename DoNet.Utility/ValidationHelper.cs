@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DoNet.Utility
 {
@@ -9,10 +10,12 @@ namespace DoNet.Utility
         /// </summary>
         /// <param name="value">待验证的参数的值.</param>
         /// <param name="name">待验证的参数的名称.</param>
-        public ValidationHelper(T value, string name)
+        /// <param name="errorList">验证错误列表.</param>
+        public ValidationHelper(T value, string name, List<string> errorList)
         {
             Value = value;
             Name = name;
+            ErrorList = errorList ?? new List<string>();
         }
 
         /// <summary>
@@ -25,24 +28,27 @@ namespace DoNet.Utility
         /// </summary>
         public string Name { get; }
 
+        public List<string> ErrorList { get; set; }
+
         /// <summary>
         ///     验证参数不为其默认值.
         /// </summary>
         /// <returns>this指针以方便链式调用.</returns>
         /// <exception cref="ArgumentException">参数为值类型且为默认值.</exception>
         /// <exception cref="ArgumentNullException">参数为引用类型且为null.</exception>
-        public ValidationHelper<T> NotDefault()
+        public bool NotDefault()
         {
             if (Value.Equals(default(T)))
             {
-                if (Value is ValueType)
-                {
-                    throw new ArgumentException(string.Format("{0}不能为默认值！", Name));
-                }
-                throw new ArgumentNullException(string.Format("{0}不能为null值！", Name));
+                //if (Value is ValueType)
+                //{
+                //    ErrorList.Add(string.Format("{0}不能为默认值！", Name));
+                //}
+                //ErrorList.Add(string.Format("{0}不能为null值！", Name));
+                return false;
             }
-
-            return this;
+            //return this;
+            return true;
         }
 
         /// <summary>

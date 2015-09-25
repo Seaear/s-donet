@@ -1,44 +1,44 @@
-using System;
+ï»¿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace DoNet.Utility
 {
     public static class Validation
     {
-        public static ValidationHelper<T> InitValidation<T>(this T value, string name)
+        public static ValidationHelper<T> InitValidation<T>(this T value, string name, List<string> errorList)
         {
-            return new ValidationHelper<T>(value, name);
+            return new ValidationHelper<T>(value, name, errorList);
         }
 
         public static ValidationHelper<string> NotEmpty(this ValidationHelper<string> current)
         {
-            current.NotDefault();
             if (string.IsNullOrEmpty(current.Value))
-                throw new ArgumentException(string.Format("{0}²»ÄÜÎª¿Õ£¡", current.Name));
+                current.ErrorList.Add(string.Format("{0}ä¸èƒ½ä¸ºç©ºï¼", current.Name));
             return current;
         }
 
         public static ValidationHelper<string> LongerThan(this ValidationHelper<string> current, int length)
         {
-            current.NotDefault();
-            if (current.Value.Length < length)
-                throw new ArgumentException(string.Format("{0}µÄ³¤¶È²»¿ÉĞ¡ÓÚ{1}£¡", current.Name, length));
+            if (string.IsNullOrEmpty(current.Value))
+                if (current.Value.Length < length)
+                    current.ErrorList.Add(string.Format("{0}çš„é•¿åº¦ä¸å¯å°äº{1}ï¼", current.Name, length));
             return current;
         }
 
         public static ValidationHelper<string> ShorterThan(this ValidationHelper<string> current, int length)
         {
-            current.NotDefault();
-            if (current.Value.Length > length)
-                throw new ArgumentException(string.Format("{0}µÄ³¤¶È²»¿É³¬¹ı{1}£¡", current.Name, length));
+            if (string.IsNullOrEmpty(current.Value))
+                if (current.Value.Length > length)
+                    current.ErrorList.Add(string.Format("{0}çš„é•¿åº¦ä¸å¯è¶…è¿‡{1}ï¼", current.Name, length));
             return current;
         }
 
-        public static ValidationHelper<string> LengthBetween(this ValidationHelper<string> current, int minLength,
-            int maxLength)
+        public static ValidationHelper<string> LengthBetween(this ValidationHelper<string> current, int minLength, int maxLength)
         {
-            current.NotDefault();
-            if (current.Value.Length < minLength || current.Value.Length > maxLength)
-                throw new ArgumentException(string.Format("{0}µÄ³¤¶È±ØĞëÔÚ{1}ºÍ{2}Ö®¼ä£¡", current.Name, minLength, maxLength));
+            if (string.IsNullOrEmpty(current.Value))
+                if (current.Value.Length < minLength || current.Value.Length > maxLength)
+                    current.ErrorList.Add(string.Format("{0}çš„é•¿åº¦å¿…é¡»åœ¨{1}å’Œ{2}ä¹‹é—´ï¼", current.Name, minLength, maxLength));
             return current;
         }
 
@@ -46,23 +46,45 @@ namespace DoNet.Utility
         {
             int result;
             if (!int.TryParse(current.Value, out result))
-                throw new ArgumentException(string.Format("{0}±ØĞëÎªÊı×Ö£¡", current.Name));
-
-            return new ValidationHelper<int>(result, current.Name);
+                current.ErrorList.Add(string.Format("{0}å¿…é¡»ä¸ºæ•°å­—ï¼", current.Name));
+            return new ValidationHelper<int>(result, current.Name, current.ErrorList);
         }
 
         public static ValidationHelper<int> LargerThan(this ValidationHelper<int> current, int num)
         {
             if (current.Value < num)
-                throw new ArgumentException(string.Format("{0}µÄÖµ²»¿ÉĞ¡ÓÚ{1}£¡", current.Name, num));
+                current.ErrorList.Add(string.Format("{0}çš„å€¼ä¸å¯å°äº{1}ï¼", current.Name, num));
             return current;
         }
 
         public static ValidationHelper<int> SmallerThan(this ValidationHelper<int> current, int num)
         {
             if (current.Value > num)
-                throw new ArgumentException(string.Format("{0}µÄÖµ²»¿É´óÓÚ{1}£¡", current.Name, num));
+                current.ErrorList.Add(string.Format("{0}çš„å€¼ä¸å¯å¤§äº{1}ï¼", current.Name, num));
             return current;
         }
+
+        public static ValidationHelper<DateTime> IsDateTime(this ValidationHelper<string> current)
+        {
+            DateTime result;
+            if (!DateTime.TryParse(current.Value, out result))
+                current.ErrorList.Add(string.Format("{0}å¿…é¡»ä¸ºæ—¶é—´ï¼", current.Name));
+            return new ValidationHelper<DateTime>(result, current.Name, current.ErrorList);
+        }
+
+        public static ValidationHelper<DateTime> LargerThan(this ValidationHelper<DateTime> current, DateTime time)
+        {
+            if (current.Value < time)
+                current.ErrorList.Add(string.Format("{0}ä¸å¯å°äº{1}ï¼", current.Name, time));
+            return current;
+        }
+
+        public static ValidationHelper<DateTime> SmallerThan(this ValidationHelper<DateTime> current, DateTime time)
+        {
+            if (current.Value > time)
+                current.ErrorList.Add(string.Format("{0}ä¸å¯å¤§äº{1}ï¼", current.Name, time));
+            return current;
+        }
+
     }
 }
