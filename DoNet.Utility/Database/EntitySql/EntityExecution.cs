@@ -475,7 +475,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    string whereSql = SqlCreator.CreateWhereSql(whereEntity);
         //    string selectSql = SqlCreator.CreateSelectSql<T>(dbColumnNames, 1);
 
-        //    if (db == null) db = DatabaseFactory.CreateDatabase();
+        //    if (db == null) db = DbFactory.CreateDatabase();
         //    using (var cmd = db.GetSqlStringCommand(selectSql + whereSql))
         //    {
         //        SqlCreator.FillSqlParameters(db, cmd, whereEntity);
@@ -520,7 +520,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    string whereSql = SqlCreator.CreateWhereSql(whereEntity);
         //    string selectSql = SqlCreator.CreateSelectSql<T>(dbColumnNames, 1);
 
-        //    if (db == null) db = DatabaseFactory.CreateDatabase();
+        //    if (db == null) db = DbFactory.CreateDatabase();
         //    using (var cmd = db.GetSqlStringCommand(selectSql + whereSql))
         //    {
         //        SqlCreator.FillSqlParameters(db, cmd, whereEntity);
@@ -584,7 +584,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    else
         //        selectSql = SqlCreator.CreateSelectSql<T>(memberExpression.Body as MemberExpression, rowCount);
 
-        //    if (db == null) db = DatabaseFactory.CreateDatabase();
+        //    if (db == null) db = DbFactory.CreateDatabase();
         //    using (var cmd = db.GetSqlStringCommand(selectSql + whereSql))
         //    {
         //        SqlCreator.FillSqlParameters(db, cmd, whereEntity);
@@ -610,7 +610,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    Database db = null;
         //    try
         //    {
-        //        db = DatabaseFactory.CreateDatabase();
+        //        db = DbFactory.CreateDatabase();
         //        GenericWhereEntity<MainTable> mainWhereEntity = new GenericWhereEntity<MainTable>();
         //        if (mainConditionExpression != null)
         //        {
@@ -725,7 +725,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    Database db = null;
         //    try
         //    {
-        //        db = DatabaseFactory.CreateDatabase();
+        //        db = DbFactory.CreateDatabase();
         //        GenericWhereEntity<MainTable> mainWhereEntity = new GenericWhereEntity<MainTable>();
         //        if (mainConditionExpression != null)
         //        {
@@ -843,7 +843,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    Database db = null;
         //    try
         //    {
-        //        db = DatabaseFactory.CreateDatabase();
+        //        db = DbFactory.CreateDatabase();
         //        GenericWhereEntity<MainTable> mainWhereEntity = new GenericWhereEntity<MainTable>();
         //        if (mainConditionExpression != null)
         //        {
@@ -976,7 +976,7 @@ namespace DoNet.Utility.Database.EntitySql
         //    Database db = null;
         //    try
         //    {
-        //        db = DatabaseFactory.CreateDatabase();
+        //        db = DbFactory.CreateDatabase();
         //        GenericWhereEntity<MainTable> mainWhereEntity = new GenericWhereEntity<MainTable>();
         //        if (mainConditionExpression != null)
         //        {
