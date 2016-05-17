@@ -6,6 +6,12 @@ using System.Text.RegularExpressions;
 
 namespace DoNet.Utility.HttpProc
 {
+    // 使用put进行上传，IIS服务器需设置：
+    // 1、开启WebDav功能，添加创作规则。
+    // 2、开启目录浏览功能。
+    // 3、在身份验证中开启Windows身份验证，关闭匿名验证。
+    // 4、在webconfig中加入<httpRuntime maxRequestLength="10240" />控制附件大小。
+
     public class FileUpload
     {
         public FileUpload(string userName, string password)
@@ -146,4 +152,5 @@ namespace DoNet.Utility.HttpProc
             }
         }
     }
+
 }
