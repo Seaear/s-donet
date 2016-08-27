@@ -47,6 +47,7 @@
     <Compile Include="HttpProc\UploadEventArgs.cs" />
     <Compile Include="HttpProc\MultipartForm.cs" />
     <Compile Include="HttpProc\MyWebClient.cs" />
+    <Compile Include="MailHelper.cs" />
     <Compile Include="OtherHelper.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Validation2.cs" />
