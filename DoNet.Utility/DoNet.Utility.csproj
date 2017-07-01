@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoNet.Utility</RootNamespace>
     <AssemblyName>DoNet.Utility</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,8 +30,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aliyun-net-sdk-cdn">
+      <HintPath>..\lib\aliyun-net-sdk-cdn.dll</HintPath>
+    </Reference>
+    <Reference Include="aliyun-net-sdk-core">
+      <HintPath>..\lib\aliyun-net-sdk-core.dll</HintPath>
+    </Reference>
+    <Reference Include="Aliyun.OSS">
+      <HintPath>..\lib\Aliyun.OSS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -48,6 +60,7 @@
     <Compile Include="HttpProc\MultipartForm.cs" />
     <Compile Include="HttpProc\MyWebClient.cs" />
     <Compile Include="MailHelper.cs" />
+    <Compile Include="OssHelper.cs" />
     <Compile Include="OtherHelper.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Validation2.cs" />
